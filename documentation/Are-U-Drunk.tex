@@ -1,0 +1,230 @@
+\documentclass[12pt,english]{article}
+\usepackage[a4paper,left=3cm,right=2cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{pifont}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{amsthm,thmtools}
+\usepackage{multirow}
+\usepackage{pgfgantt}
+\usepackage{amsmath}
+\usepackage{longtable}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage{url}
+\usepackage{svg}
+\newcommand{\back}[1]{\fontsize{60}{70}\selectfont #1}
+\usepackage{multirow}
+\usepackage[hidelinks]{hyperref}
+\usepackage{caption}
+\usepackage[sort&compress, numbers]{natbib}
+\definecolor{swotS}{RGB}{226,237,143}
+\definecolor{swotW}{RGB}{247,193,139}
+\definecolor{swotO}{RGB}{173,208,187}
+\definecolor{swotT}{RGB}{192,165,184}
+\usepackage{eurosym} % para el euro
+\usepackage[raster]{tcolorbox}
+\usepackage{amsthm}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{amsfonts}
+\usepackage[usestackEOL]{stackengine}
+\usepackage{titling}
+\usepackage{soul}
+\usepackage{dirtree}
+\usepackage{pgfplots}
+\usepackage[nottoc]{tocbibind}
+\usepackage{listings}
+\usepackage{array}
+\usepackage[framemethod=tikz]{mdframed}
+\usetikzlibrary{matrix, shapes, arrows,calc, positioning, chains, fit, decorations}
+\usepackage{footnote}
+\newcommand{\dollar}{\mbox{\textdollar}}
+\usepackage{lscape}
+\usepackage{amsmath}  % for \hookrightarrow
+\usepackage{xcolor}   % for \textcolor
+\usepackage{incgraph}
+\usepackage[toc,page]{appendix}
+\makesavenoteenv{tabular}
+\makesavenoteenv{table}
+\newcommand{\greentick}{\textcolor{green}{\ding{52}}}
+\newcommand{\redcross}{\textcolor{red}{\ding{55}}}
+\graphicspath{ {./img/}}
+\makeatletter
+\def\input@path{{input/}}
+\makeatother
+\selectlanguage{english}
+%\usepackage{fancyhdr}
+%\pagestyle{fancy}
+\usepackage[
+    type={CC},
+    modifier={by-nc-sa},
+    version={4.0},
+]{doclicense}
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{10} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{10}  % for normal
+
+% Custom colors
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},          % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,
+tabsize=2,
+literate={\ \ }{{\ }}1,                        % Any extra options here
+showstringspaces=false            %
+}}
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pythonexternal[2][]{{
+\pythonstyle
+\lstinputlisting[#1]{#2}}}
+
+% Python for inline
+\newcommand\pythoninline[1]{{\pythonstyle\lstinline!#1!}}
+
+\lstdefinelanguage{docker-compose-2}{
+  keywords={version, services},
+  keywordstyle=[2]\color{blue}\bfseries,
+  keywords=[2]{image, environment, ports, container_name, ports, links, build,
+  volumes, depends_on, restart},
+  keywordstyle=\color{olive}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinelanguage{docker}{
+  keywords={FROM, RUN, COPY, ADD, ENTRYPOINT, CMD,  ENV, ARG, WORKDIR, EXPOSE, LABEL, USER, VOLUME, STOPSIGNAL, ONBUILD, MAINTAINER},
+  keywordstyle=\color{blue}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstdefinelanguage{flutter}{
+  keywords={class, extends, final, return, this, async, await, new, final, false, void, true, itemBuilder, onSelected},
+  keywordstyle=\color{blue}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{\#},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]",
+  tabsize=2,
+  literate={\ \ }{{\ }}1,
+}
+
+\colorlet{helpful}{lime!70}
+\colorlet{harmful}{red!30}
+\colorlet{internal}{yellow!20}
+\colorlet{external}{cyan!30}
+\colorlet{S}{helpful!50!internal}
+\colorlet{W}{harmful!50!internal}
+\colorlet{O}{helpful!50!external}
+\colorlet{T}{harmful!50!external}
+
+\lstset{
+  breaklines=true,
+  postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+  mathescape = true,
+  basicstyle=\ttm,
+  keywordstyle=\ttb\color{deepblue},
+  emph={MyClass,__init__},          % Custom highlighting
+  emphstyle=\ttb\color{deepred},    % Custom highlighting style
+  stringstyle=\color{deepgreen},
+  frame=tb,                         % Any extra options here
+  showstringspaces=false,            %
+  aboveskip=20pt,
+  belowskip=20pt
+}
+
+\makeindex
+
+\definecolor{light-gray}{gray}{0.95}
+\lstset{columns=fullflexible,basicstyle=\ttfamily}
+\newcommand{\texta}{Helpful\\ \tiny (to achieve the objective)\par}
+\newcommand{\textb}{Harmful\\ \tiny (to achieve the objective)\par}
+\newcommand{\textcn}{Internal origin\\ \tiny (product\slash company attributes)\par}
+\newcommand{\textdn}{External origin\\ \tiny (environment\slash market attributes)\par}
+
+
+\pgfplotsset{width=8cm,compat=1.9, xlabel={Year},
+  ylabel={Number of documents}, xtick distance={2},
+  ytick distance={2}, ymajorgrids=true,grid style=dashed,
+  /pgf/number format/.cd,use comma,1000 sep={}}
+
+
+\begin{document}
+
+\input{titlepage.tex}
+\input{preface.tex}
+\thispagestyle{empty}
+\newpage
+\tableofcontents{}
+\newpage
+\listoffigures
+\newpage
+\listoftables
+\newpage
+\lstlistoflistings
+\newpage
+%\thispagestyle{empty}
+%\newpage
+%\rhead{}
+%\lhead{}
+%\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\footrulewidth}{0pt}
+
+\input{introduction.tex}
+\newpage
+\input{state.tex}
+%\input{methodology.tex}
+\newpage
+\input{design.tex}
+\newpage
+\input{implementation.tex}
+\newpage
+\input{discussion.tex}
+\newpage
+\input{conclusions.tex}
+\newpage
+\input{appendix.tex}
+
+
+\newpage
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+\doclicenseThis
+
+\end{document}
