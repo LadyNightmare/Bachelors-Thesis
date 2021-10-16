@@ -1,0 +1,20 @@
+version: '3'
+services:
+  database:
+    image: "postgres:9.6.22-buster" # use 9.6.22-buster postgres version
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - database-data:/var/lib/postgresql/data/ # persist data even if container shuts down
+    ports:
+      - "60123:5432"
+  backend:
+    image: are_u_drunk_rest_api
+    build: .
+    ports:
+      - "60321:5000"
+    volumes:
+      - clue-videos:/app/videos
+volumes:
+  database-data: # named volumes can be managed easier using docker-compose
+  clue-videos:
